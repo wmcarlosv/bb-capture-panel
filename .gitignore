@@ -1,0 +1,31 @@
+# Environments
+.env
+.env.backup
+*.env
+
+# Dependencies
+/vendor
+/node_modules
+**/node_modules
+
+# Database
+/database/*.sqlite
+/database/*.db
+
+# Logs and Temp
+/writable/sessions/*
+!/writable/sessions/.gitkeep
+*.log
+
+# System
+.DS_Store
+Thumbs.db
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+
+# Socket Server specific
+socket-server/node_modules
+socket-server/npm-debug.log
