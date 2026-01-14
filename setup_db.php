@@ -8,10 +8,19 @@ use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
+// Ensure DB directory exists
+$dbDir = __DIR__ . '/database';
+if (!is_dir($dbDir)) {
+    mkdir($dbDir, 0777, true);
+    // SQLite requires write permission on the directory
+    chmod($dbDir, 0777); 
+}
+
 // Ensure DB file exists
-$dbFile = __DIR__ . '/database/database.sqlite';
+$dbFile = $dbDir . '/database.sqlite';
 if (!file_exists($dbFile)) {
     touch($dbFile);
+    chmod($dbFile, 0666); // Read/Write for file
 }
 
 $db = Database::getInstance()->getConnection();
